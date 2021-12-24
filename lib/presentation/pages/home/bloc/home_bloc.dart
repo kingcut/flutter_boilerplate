@@ -13,12 +13,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetTask getTask;
 
   HomeBloc({required this.getTask}) : super(HomeInitial()) {
-    on<HomeEvent>((event, emit) {
-      print('event::: $event');
-      on<GetTaskEvent>(_getTask);
-      // if (event is GetTaskEvent) {
-      //   _getTask(event, emit);
-      // }
+    on<GetTaskEvent>((event, emit) {
+      _getTask(event, emit);
     });
   }
 

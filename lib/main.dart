@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/presentation/di/locator.dart';
+import 'package:flutter_boilerplate/presentation/pages/home/home_page.dart';
 
-void main() {
+Future<void> main() async {
+  await setupLocator();
   runApp(const MyApp());
 }
 
@@ -24,7 +27,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const HomePage(),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_boilerplate/data/models/task.dart';
+import 'package:flutter_boilerplate/domain/common/result.dart';
 import 'package:flutter_boilerplate/domain/use_cases/get_task.dart';
 import 'package:meta/meta.dart';
 
@@ -17,7 +18,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _getTask(GetTaskEvent event, Emitter<HomeState> emit) async {
-    final task = await getTask();
-    emit(GetTasksSuccessState(task));
+    await getTask()
+        .then((value) => emit(GetTasksSuccessState(value.data ?? [])))
+        .catchError((error) => emit(GetTasksFailedState(error)));
   }
 }

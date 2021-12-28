@@ -1,39 +1,39 @@
 import 'error_type.dart';
 
-class Result<T> with SealedResult<T> {
-  bool get isSuccessful => this is Success<T>;
+class ResultEntity<T> with SealedResult<T> {
+  bool get isSuccessful => this is ResultSuccessEntity<T>;
 
-  Result<T> transform({
+  ResultEntity<T> transform({
     required T Function(T)? success,
-    Error<T> Function(Error<T>)? error,
+    ResultErrorEntity<T> Function(ResultErrorEntity<T>)? error,
   }) {
-    if (this is Success<T> && success != null) {
-      (this as Success<T>).data = success.call((this as Success<T>).data);
+    if (this is ResultSuccessEntity<T> && success != null) {
+      (this as ResultSuccessEntity<T>).data = success.call((this as ResultSuccessEntity<T>).data);
     }
-    if (this is Error<T> && error != null) {
-      return error.call(this as Error<T>);
+    if (this is ResultErrorEntity<T> && error != null) {
+      return error.call(this as ResultErrorEntity<T>);
     }
     return this;
   }
 }
 
-class Success<T> extends Result<T> {
+class ResultSuccessEntity<T> extends ResultEntity<T> {
   T data;
 
-  Success(this.data);
+  ResultSuccessEntity(this.data);
 }
 
-class Error<T> extends Result<T> {
+class ResultErrorEntity<T> extends ResultEntity<T> {
   ErrorType type;
   String message;
 
-  Error(this.type, this.message);
+  ResultErrorEntity(this.type, this.message);
 }
 
-class ServerError<T> extends Error<T> {
+class ServerErrorEntity<T> extends ResultErrorEntity<T> {
   int code;
 
-  ServerError({
+  ServerErrorEntity({
     required ErrorType type,
     required String error,
     required this.code,
@@ -43,13 +43,13 @@ class ServerError<T> extends Error<T> {
 abstract class SealedResult<T> {
   R? when<R>({
     R Function(T)? success,
-    R Function(Error)? error,
+    R Function(ResultErrorEntity)? error,
   }) {
-    if (this is Success<T>) {
-      return success?.call((this as Success).data);
+    if (this is ResultSuccessEntity<T>) {
+      return success?.call((this as ResultSuccessEntity).data);
     }
-    if (this is Error<T>) {
-      return error?.call(this as Error);
+    if (this is ResultErrorEntity<T>) {
+      return error?.call(this as ResultErrorEntity);
     }
     throw Exception('If you got here, probably you forgot to regenerate the classes? '
         'Try running flutter packages pub run build_runner build');

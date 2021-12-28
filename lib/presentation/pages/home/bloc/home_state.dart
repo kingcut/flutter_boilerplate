@@ -10,3 +10,9 @@ class GetTasksSuccessState extends HomeState {
 
   GetTasksSuccessState(this.tasks);
 }
+
+class GetTasksFailedState extends HomeState {
+  final ResultErrorEntity error;
+
+  GetTasksFailedState(this.error);
+}

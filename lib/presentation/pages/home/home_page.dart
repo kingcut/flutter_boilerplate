@@ -10,29 +10,31 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeBloc>(
-      create: (context) => locator<HomeBloc>()..add(GetTaskEvent()),
+      create: (context) =>
+      locator<HomeBloc>()
+        ..add(GetTaskEvent()),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Homepage'),
         ),
-        body: BlocSelector<HomeBloc, HomeState, List<Task>>(
-          selector: (state) {
-            if(state is GetTasksSuccessState) {
-              return state.tasks;
+        body: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            if (state is GetTasksSuccessState) {
+              return ListView.builder(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: state.tasks.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      height: 50,
+                      child: Center(child: Text('Entry ${state.tasks[index]
+                          .name}')),
+                    );
+                  });
+            } else if (state is GetTasksFailedState) {
+              return Text(state.error.message);
             } else {
-              return [];
+              return const Offstage();
             }
-          },
-          builder: (context, tasks) {
-            return ListView.builder(
-                padding: const EdgeInsets.all(8),
-                itemCount: tasks.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 50,
-                    child: Center(child: Text('Entry ${tasks[index].name}')),
-                  );
-                });
           },
         ),
       ),

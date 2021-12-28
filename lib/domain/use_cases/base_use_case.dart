@@ -7,7 +7,7 @@ abstract class UseCase {
 
 abstract class UseCaseResult<Type, Params> extends UseCase {
   @override
-  Future<Result<Type>> call({Params params});
+  Future<ResultEntity<Type>> call({Params params});
 }
 
 class NoParams extends Equatable {

@@ -13,13 +13,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetTask getTask;
 
   HomeBloc({required this.getTask}) : super(HomeInitial()) {
-    on<GetTaskEvent>((event, emit) {
-      _getTask(event, emit);
-    });
+    on<GetTaskEvent>((event, emit) async => await _getTask(event, emit));
   }
 
   Future<void> _getTask(GetTaskEvent event, Emitter<HomeState> emit) async {
-    print('object');
     final task = await getTask();
     emit(GetTasksSuccessState(task));
   }

@@ -1,15 +1,19 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_boilerplate/data/data_sources/common/base_response.dart';
+import 'package:flutter_boilerplate/data/data_sources/common/response_data.dart';
 import 'package:flutter_boilerplate/domain/common/error_type.dart';
 import 'package:flutter_boilerplate/domain/common/response_entity.dart';
 import 'package:flutter_boilerplate/domain/common/result.dart';
 
 typedef ResponseToModel<Model> = Model Function(dynamic);
 
-abstract class BaseRepository {
-  Future<ResultEntity<Model>> safeApiCall<Model>(Future<Model> call) async {
+abstract class BaseRepositoryImpl {
+  Future<ResultEntity<ResponseEntity<Model>>> safeApiCall<Model>(
+      Future<BaseResponse<Model>> call) async {
     try {
       var response = await call;
-      return ResultSuccessEntity<Model>(response);
+      return ResultSuccessEntity<ResponseEntity<Model>>(
+          ResponseEntity(response.data));
     } on Exception catch (exception) {
       if (exception is DioError) {
         switch (exception.type) {

@@ -2,12 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
 
-class Request extends http.BaseClient {
+class AppClient extends BaseClient {
   final Client _client = Client();
 
-  Request();
+  AppClient();
 
   Uri endpoint(Uri url) {
     return url;
@@ -18,7 +17,7 @@ class Request extends http.BaseClient {
   }
 
   @override
-  Future<http.StreamedResponse> send(http.BaseRequest request) {
+  Future<StreamedResponse> send(BaseRequest request) {
     request.headers['Content-type'] = 'application/json';
     request.headers['Accept'] = 'application/json';
     request.headers['Cache-Control'] = 'no-cache';
@@ -27,19 +26,19 @@ class Request extends http.BaseClient {
   }
 
   @override
-  Future<http.Response> head(url, {Map<String, String>? headers}) {
+  Future<Response> head(url, {Map<String, String>? headers}) {
     _logEndpoint('head', url);
     return _client.head(endpoint(url), headers: headers);
   }
 
   @override
-  Future<http.Response> get(url, {Map<String, String>? headers}) {
+  Future<Response> get(url, {Map<String, String>? headers}) {
     _logEndpoint('get', url);
     return _client.get(endpoint(url), headers: headers);
   }
 
   @override
-  Future<http.Response> post(url,
+  Future<Response> post(url,
       {Map<String, String>? headers, body, Encoding? encoding}) {
     _logEndpoint('post', url);
     return _client.post(endpoint(url),
@@ -47,7 +46,7 @@ class Request extends http.BaseClient {
   }
 
   @override
-  Future<http.Response> put(url,
+  Future<Response> put(url,
       {Map<String, String>? headers, body, Encoding? encoding}) {
     _logEndpoint('put', url);
     return _client.put(endpoint(url),
@@ -55,7 +54,7 @@ class Request extends http.BaseClient {
   }
 
   @override
-  Future<http.Response> patch(url,
+  Future<Response> patch(url,
       {Map<String, String>? headers, body, Encoding? encoding}) {
     _logEndpoint('patch', url);
     return _client.patch(endpoint(url),
@@ -63,7 +62,7 @@ class Request extends http.BaseClient {
   }
 
   @override
-  Future<http.Response> delete(url,
+  Future<Response> delete(url,
       {Map<String, String>? headers, Object? body, Encoding? encoding}) {
     _logEndpoint('delete', url);
     return _client.delete(

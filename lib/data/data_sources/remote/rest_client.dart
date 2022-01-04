@@ -1,8 +1,8 @@
-import 'package:flutter_boilerplate/data/data_sources/remote/request.dart';
+import 'package:flutter_boilerplate/data/data_sources/remote/app_client.dart';
 import 'package:http/http.dart' as http;
 
 class RestClient {
-  final Request request;
+  final AppClient request;
 
   RestClient(this.request);
 

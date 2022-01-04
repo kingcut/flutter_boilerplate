@@ -1,1 +1,1 @@
-enum ErrorType { POOR_NETWORK, NO_NETWORK, SERVER, GENERIC }
+enum ErrorType { poorNetwork, noNetwork, server, generic, format, timeout }

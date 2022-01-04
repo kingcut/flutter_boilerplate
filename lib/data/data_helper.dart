@@ -36,12 +36,12 @@ List<T> parseJsonToList<T>(
 List<T> listFromJson<T>(
     List json, T Function(Map<String, dynamic>) factoryFunction) {
   final list = <T>[];
-  json.forEach((element) {
+  for (var element in json) {
     if (element is Map<String, dynamic>) {
       final value = factoryFunction(element);
       list.add(value);
     }
-  });
+  }
   return list;
 }
 

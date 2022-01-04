@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +14,7 @@ class Request extends http.BaseClient {
   }
 
   void _logEndpoint(String method, Uri url) {
-    print('[${method.toUpperCase().toString()}] ${endpoint(url).toString()}');
+    debugPrint('[${method.toUpperCase()}] ${endpoint(url).toString()}');
   }
 
   @override

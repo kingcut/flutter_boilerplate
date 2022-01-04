@@ -1,35 +1,23 @@
-import 'package:dio/dio.dart';
+import 'package:flutter_boilerplate/data/data_sources/common/response_list_data.dart';
 import 'package:flutter_boilerplate/data/data_sources/remote/rest_client.dart';
+import 'package:flutter_boilerplate/data/di/locator.dart';
+import 'package:flutter_boilerplate/data/models/response_list_entity.dart';
 import 'package:flutter_boilerplate/data/models/task.dart';
 import 'package:flutter_boilerplate/data/repositories/base/base_repository.dart';
-import 'package:flutter_boilerplate/domain/common/response_entity.dart';
 import 'package:flutter_boilerplate/domain/common/result.dart';
 import 'package:flutter_boilerplate/domain/repositories/task_repo.dart';
-import 'package:logger/logger.dart';
 
 class TaskRepoImpl extends BaseRepositoryImpl implements TaskRepo {
-  // @override
-  // Future<List<Task>> getTasks() {
-  //   final dio = Dio(); // Provide a dio instance
-  //   dio.options.headers["Demo-Header"] =
-  //       "demo header"; // config your dio headers globally
-  //   final client = RestClient(dio);
-  //
-  //   client.getTasks().then((value) => null).catchError();
-  // }
-
   @override
-  Future<ResponseEntity<List<Task>>> getTasks() async {
-    final dio = Dio(); // Provide a dio instance
-    dio.options.headers["Demo-Header"] =
-        "demo header"; // config your dio headers globally
-    final client = RestClient(dio);
-
-    final result = await safeApiCall<List<Task>>(
-      client.getTasks(),
+  Future<ResponseListEntity<Task>> getTasks() async {
+    final result = await safeApiCall<ResponseListData<Task>>(
+      locator<RestClient>().getTasks(),
+      (json) {
+        return ResponseListData.fromJson(json, (item) => Task.fromJson(item));
+      },
     );
     if (result.isSuccessful) {
-      return (result as ResultSuccessEntity<ResponseEntity<List<Task>>>).data;
+      return (result as ResultSuccessEntity<ResponseListData<Task>>).data;
     }
     throw result;
   }

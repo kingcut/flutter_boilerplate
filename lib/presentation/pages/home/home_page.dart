@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/data/models/task.dart';
 import 'package:flutter_boilerplate/presentation/di/locator.dart';
 import 'package:flutter_boilerplate/presentation/pages/home/bloc/home_bloc.dart';
 
@@ -10,9 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeBloc>(
-      create: (context) =>
-      locator<HomeBloc>()
-        ..add(GetTaskEvent()),
+      create: (context) => locator<HomeBloc>()..add(GetTaskEvent()),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Homepage'),
@@ -26,8 +23,8 @@ class HomePage extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return SizedBox(
                       height: 50,
-                      child: Center(child: Text('Entry ${state.tasks[index]
-                          .name}')),
+                      child: Center(
+                          child: Text('Entry ${state.tasks[index].name}')),
                     );
                   });
             } else if (state is GetTasksFailedState) {

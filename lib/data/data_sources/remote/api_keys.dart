@@ -1,3 +1,1 @@
-class ApiKeys {
-
-}
+class ApiKeys {}

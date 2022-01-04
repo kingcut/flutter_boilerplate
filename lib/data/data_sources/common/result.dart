@@ -1,4 +1,3 @@
-import 'package:flutter_boilerplate/domain/common/error_type.dart';
 import 'package:flutter_boilerplate/domain/common/result.dart';
 
 class ResultSuccess<T> extends ResultSuccessEntity<T> {

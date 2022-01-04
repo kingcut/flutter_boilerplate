@@ -1,7 +1,6 @@
+import 'package:flutter_boilerplate/data/models/response_list_entity.dart';
 import 'package:flutter_boilerplate/data/models/task.dart';
-import 'package:flutter_boilerplate/domain/common/response_entity.dart';
 
 abstract class TaskRepo {
-
-  Future<ResponseEntity<List<Task>>> getTasks();
+  Future<ResponseListEntity<Task>> getTasks();
 }

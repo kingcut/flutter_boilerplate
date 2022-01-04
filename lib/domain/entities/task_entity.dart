@@ -4,5 +4,9 @@ class TaskEntity {
   String? avatar;
   String? createdAt;
 
-  TaskEntity({required this.id, required this.name, required this.avatar, required this.createdAt});
+  TaskEntity(
+      {required this.id,
+      required this.name,
+      required this.avatar,
+      required this.createdAt});
 }

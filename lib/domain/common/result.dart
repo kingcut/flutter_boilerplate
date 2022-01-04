@@ -1,4 +1,5 @@
-import 'error_type.dart';
+
+import 'package:flutter_boilerplate/domain/common/error_type.dart';
 
 class ResultEntity<T> with SealedResult<T> {
   bool get isSuccessful => this is ResultSuccessEntity<T>;
@@ -8,7 +9,8 @@ class ResultEntity<T> with SealedResult<T> {
     ResultErrorEntity<T> Function(ResultErrorEntity<T>)? error,
   }) {
     if (this is ResultSuccessEntity<T> && success != null) {
-      (this as ResultSuccessEntity<T>).data = success.call((this as ResultSuccessEntity<T>).data);
+      (this as ResultSuccessEntity<T>).data =
+          success.call((this as ResultSuccessEntity<T>).data);
     }
     if (this is ResultErrorEntity<T> && error != null) {
       return error.call(this as ResultErrorEntity<T>);
@@ -51,7 +53,8 @@ abstract class SealedResult<T> {
     if (this is ResultErrorEntity<T>) {
       return error?.call(this as ResultErrorEntity);
     }
-    throw Exception('If you got here, probably you forgot to regenerate the classes? '
+    throw Exception(
+        'If you got here, probably you forgot to regenerate the classes? '
         'Try running flutter packages pub run build_runner build');
   }
 }

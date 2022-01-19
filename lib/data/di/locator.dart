@@ -2,13 +2,19 @@ import 'package:flutter_boilerplate/data/data_sources/remote/app_client.dart';
 import 'package:flutter_boilerplate/data/data_sources/remote/rest_client.dart';
 import 'package:flutter_boilerplate/data/repositories/task_repo_impl.dart';
 import 'package:flutter_boilerplate/domain/repositories/task_repo.dart';
+import 'package:flutter_boilerplate/environment/environment.dart';
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance..allowReassignment = true;
 
-Future setupLocator() async {
+Future setupLocator(String? flavor) async {
   _registerClient();
   _registerRepository();
+  _registerEnvironment(flavor);
+}
+
+void _registerEnvironment(String? flavor) {
+  locator.registerLazySingleton<Environment>(() => Environment(flavor));
 }
 
 Future _registerClient() async {

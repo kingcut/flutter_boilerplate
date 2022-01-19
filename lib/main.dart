@@ -1,37 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_boilerplate/environment/config/base_config.dart';
+import 'package:flutter_boilerplate/environment/config/dev_config.dart';
+import 'package:flutter_boilerplate/environment/config/prod_config.dart';
+import 'package:flutter_boilerplate/environment/config/staging_config.dart';
+import 'package:flutter_boilerplate/environment/environment.dart';
 import 'package:flutter_boilerplate/presentation/di/locator.dart';
 import 'package:flutter_boilerplate/presentation/pages/home/home_page.dart';
+import 'package:flutter_boilerplate/widgets/flavor_banner.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
-  await setupLocator();
-  runApp(const MyApp());
+  // add this, and it should be the first line in main method
+  WidgetsFlutterBinding.ensureInitialized();
+  final String? flavor =
+      await const MethodChannel('flavor').invokeMethod<String>('getFlavor');
+
+  // Set orientation
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) async {
+    await setupLocator(flavor);
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    final environment = locator<Environment>();
+    return FlavorBanner(
+      color: environment.config.color,
+      name: environment.config.name,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+        ),
+        // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        home: const HomePage(),
       ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const HomePage(),
     );
   }
 }

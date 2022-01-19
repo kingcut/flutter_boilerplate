@@ -1,4 +1,6 @@
 import 'package:flutter_boilerplate/data/data_sources/remote/app_client.dart';
+import 'package:flutter_boilerplate/environment/environment.dart';
+import 'package:flutter_boilerplate/presentation/di/locator.dart';
 import 'package:http/http.dart' as http;
 
 class RestClient {
@@ -7,6 +9,7 @@ class RestClient {
   RestClient(this.request);
 
   Uri _uri([Map<String, dynamic>? queryParameters]) {
+    final environment = locator<Environment>();
     return Uri.http('myjson.dit.upm.es', '/api/bins/58wl', queryParameters);
   }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/environment/config/base_config.dart';
 
 class ProdConfig extends BaseConfig {
@@ -9,4 +10,10 @@ class ProdConfig extends BaseConfig {
 
   @override
   String get apiPath => '/api/bins/58wl';
+
+  @override
+  Color get color => Colors.red;
+
+  @override
+  String? get name => null;
 }

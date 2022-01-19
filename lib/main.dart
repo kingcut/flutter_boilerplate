@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_boilerplate/environment/config/base_config.dart';
-import 'package:flutter_boilerplate/environment/config/dev_config.dart';
-import 'package:flutter_boilerplate/environment/config/prod_config.dart';
-import 'package:flutter_boilerplate/environment/config/staging_config.dart';
-import 'package:flutter_boilerplate/environment/environment.dart';
+import 'package:flutter_boilerplate/domain/flavor/flavor_config.dart';
 import 'package:flutter_boilerplate/presentation/di/locator.dart';
 import 'package:flutter_boilerplate/presentation/pages/home/home_page.dart';
 import 'package:flutter_boilerplate/widgets/flavor_banner.dart';
@@ -30,10 +26,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final environment = locator<Environment>();
+    final config = locator<FlavorConfig>();
     return FlavorBanner(
-      color: environment.config.color,
-      name: environment.config.name,
+      color: config.color,
+      name: config.name,
       child: MaterialApp(
         title: 'Flutter Demo',
         localizationsDelegates: AppLocalizations.localizationsDelegates,

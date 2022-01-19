@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/environment/config/base_config.dart';
+import 'dart:ui';
 
-class ProdConfig extends BaseConfig {
+import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/domain/flavor/flavor_config.dart';
+
+class DevConfig extends FlavorConfig {
   @override
   String get apiHost => 'myjson.dit.upm.es';
 
@@ -12,8 +14,8 @@ class ProdConfig extends BaseConfig {
   String get apiPath => '/api/bins/58wl';
 
   @override
-  Color get color => Colors.red;
+  Color get color => Colors.blue;
 
   @override
-  String? get name => null;
+  String? get name => 'Dev';
 }

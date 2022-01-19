@@ -1,6 +1,5 @@
 import 'package:flutter_boilerplate/data/data.dart';
 import 'package:flutter_boilerplate/domain/domain.dart';
-import 'package:flutter_boilerplate/environment/environment.dart';
 import 'package:flutter_boilerplate/presentation/pages/home/bloc/home_bloc.dart';
 import 'package:get_it/get_it.dart';
 

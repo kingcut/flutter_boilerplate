@@ -9,7 +9,7 @@ class StagingConfig extends FlavorConfig {
   bool get useHttps => false;
 
   @override
-  String get apiPath => '/api/bins/58wl';
+  String get apiPath => '/api/bins/';
 
   @override
   Color get color => Colors.red;

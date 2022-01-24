@@ -8,14 +8,13 @@ class RestClient {
 
   RestClient(this.request);
 
-  Uri _uri([Map<String, dynamic>? queryParameters]) {
+  Uri _uri(String api, {Map<String, dynamic>? queryParameters}) {
     final config = locator<FlavorConfig>();
-    return Uri.http('myjson.dit.upm.es', '/api/bins/58wl', queryParameters);
+    return Uri.http(config.apiHost, '${config.apiPath}$api', queryParameters);
   }
 
   Future<http.Response> getTasks() async {
-    final uri = Uri.http('myjson.dit.upm.es', '/api/bins/58wl');
-    final http.Response response = await request.get(uri);
+    final http.Response response = await request.get(_uri('58wl'));
     return response;
   }
 }

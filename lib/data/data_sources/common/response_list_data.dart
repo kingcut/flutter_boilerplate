@@ -1,5 +1,5 @@
 import 'package:flutter_boilerplate/data/data_helper.dart';
-import 'package:flutter_boilerplate/data/models/response_list_entity.dart';
+import 'package:flutter_boilerplate/domain/entities/response_list_entity.dart';
 
 class ResponseListData<T> extends ResponseListEntity<T> {
   ResponseListData(List<T> data) : super(data);

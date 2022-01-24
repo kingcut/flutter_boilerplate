@@ -1,4 +1,4 @@
-import 'package:flutter_boilerplate/data/models/response_list_entity.dart';
+import 'package:flutter_boilerplate/domain/entities/response_list_entity.dart';
 import 'package:flutter_boilerplate/data/models/task.dart';
 import 'package:flutter_boilerplate/domain/repositories/task_repo.dart';
 import 'package:flutter_boilerplate/domain/use_cases/base_use_case.dart';

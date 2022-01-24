@@ -1,7 +1,7 @@
 import 'package:flutter_boilerplate/data/data_sources/common/response_list_data.dart';
 import 'package:flutter_boilerplate/data/data_sources/remote/rest_client.dart';
 import 'package:flutter_boilerplate/data/di/locator.dart';
-import 'package:flutter_boilerplate/data/models/response_list_entity.dart';
+import 'package:flutter_boilerplate/domain/entities/response_list_entity.dart';
 import 'package:flutter_boilerplate/data/models/task.dart';
 import 'package:flutter_boilerplate/data/repositories/base/base_repository.dart';
 import 'package:flutter_boilerplate/domain/common/result.dart';

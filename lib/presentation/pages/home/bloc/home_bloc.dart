@@ -21,7 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await getTask()
         .then((value) => emit(GetTasksSuccessState(value.data)))
         .catchError((error) {
-          debugPrint(error);
+          debugPrint('$error');
           emit(GetTasksFailedState(error));
         });
   }

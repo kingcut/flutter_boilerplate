@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_boilerplate/data/data_sources/remote/app_client.dart';
 import 'package:flutter_boilerplate/data/data_sources/remote/rest_client.dart';
 import 'package:flutter_boilerplate/data/flavor/prod_config.dart';
@@ -11,6 +13,7 @@ import 'package:get_it/get_it.dart';
 final locator = GetIt.instance..allowReassignment = true;
 
 Future setupLocator(String? flavor) async {
+  HttpOverrides.global = MyHttpOverrides();
   _registerClient();
   _registerRepository();
   _registerEnvironment(flavor);

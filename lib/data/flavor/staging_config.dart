@@ -6,7 +6,7 @@ class StagingConfig extends FlavorConfig {
   String get apiHost => 'myjson.dit.upm.es';
 
   @override
-  bool get useHttps => false;
+  bool get useHttps => true;
 
   @override
   String get apiPath => '/api/bins/';

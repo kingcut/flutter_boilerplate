@@ -90,7 +90,7 @@ android {
             def versionCode = variant.versionCode // e.g 1.0
             def flavorName = variant.flavorName // e. g. Free
             def buildType = variant.buildType.name // e. g. debug
-            outputFileName = "WPN-${flavorName}-${buildType}-v${versionName}-${versionCode}.apk"
+            outputFileName = "Boilerplate-${flavorName}-${buildType}-v${versionName}-${versionCode}.apk"
         }
     }
 }

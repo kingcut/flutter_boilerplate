@@ -59,12 +59,12 @@ jobs:
           flutter-version: '2.5.3'
       - run: flutter pub get
 #      - run: flutter test
-      - run: flutter build apk --release --flavor staging
-      - run: flutter build appbundle --flavor staging
+      - run: flutter build apk --release --flavor prod
+      - run: flutter build appbundle --flavor prod
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab"
+          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-prod-release.aab"
           token: ${{ secrets.TOKEN }}
           tag: ${{ steps.version.outputs.content }}
           commit: ${{ github.sha }}
@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: build/app/outputs/bundle/release/app-prod-release.aab
   release:
     name: Release app to internal track
     needs: [ build ]
@@ -88,6 +88,6 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: com.fluttercicddemo
-          releaseFile: app-release.aab
+          releaseFile: app-prod-release.aab
           track: internal
           whatsNewDirectory: distribution/whatsnew

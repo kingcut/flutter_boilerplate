@@ -64,7 +64,7 @@ jobs:
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-prod-release.aab"
+          artifacts: "build/app/outputs/apk/prodRelease/*.apk,build/app/outputs/bundle/prodRelease/app-prod-release.aab"
           token: ${{ secrets.TOKEN }}
           tag: ${{ steps.version.outputs.content }}
           commit: ${{ github.sha }}
@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: build/app/outputs/bundle/release/app-prod-release.aab
+          path: build/app/outputs/bundle/prodRelease/app-prod-release.aab
   release:
     name: Release app to internal track
     needs: [ build ]
@@ -83,7 +83,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: appbundle
-          path: build/app/outputs/bundle/release/app-prod-release.aab
+          path: build/app/outputs/bundle/prodRelease/app-prod-release.aab
       - name: Release app to internal track
         uses: r0adkll/upload-google-play@v1
         with:

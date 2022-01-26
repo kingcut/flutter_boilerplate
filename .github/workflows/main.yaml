@@ -83,6 +83,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: appbundle
+          path: build/app/outputs/bundle/release/app-prod-release.aab
       - name: Release app to internal track
         uses: r0adkll/upload-google-play@v1
         with:

@@ -59,8 +59,8 @@ jobs:
           flutter-version: '2.5.3'
       - run: flutter pub get
 #      - run: flutter test
-      - run: flutter build apk --release --split-per-abi
-      - run: flutter build appbundle
+      - run: flutter build apk --release --split-per-abi --flavor staging
+      - run: flutter build appbundle --flavor staging
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:

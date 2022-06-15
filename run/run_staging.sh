@@ -32,7 +32,7 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # Generate app icons & splash screen
-flutter pub run flutter_launcher_icons:main
+flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons_staging.yaml
 
 # Remove ununsed icons
 rm -f ./ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-50x50@1x.png

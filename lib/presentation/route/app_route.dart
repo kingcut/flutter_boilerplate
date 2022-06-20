@@ -3,6 +3,9 @@ import 'package:flutter_boilerplate/presentation/pages/home/home_page.dart';
 import 'package:flutter_boilerplate/presentation/pages/unknown/unknown_page.dart';
 import 'package:routemaster/routemaster.dart';
 
+const homeRoute = '/';
+const unknownRoute = '/unknown';
+
 final routes = RouteMap(
   onUnknownRoute: (path) {
     return MaterialPage(
@@ -12,8 +15,8 @@ final routes = RouteMap(
     );
   },
   routes: {
-    '/': (_) => const MaterialPage(child: HomePage()),
-    '/unknown': (route) => MaterialPage(
+    homeRoute: (_) => const MaterialPage(child: HomePage()),
+    unknownRoute: (route) => MaterialPage(
           child: UnknownPage(
             path: route.fullPath,
           ),

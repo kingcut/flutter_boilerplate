@@ -13,6 +13,7 @@ int? parseJsonToInt(String key, Map<String, dynamic>? json) {
     if (value is num) return value.toInt();
     if (value is String) return int.tryParse(value);
   }
+  return null;
 }
 
 double? parseJsonToDouble(String key, Map<String, dynamic>? json) {
@@ -21,6 +22,7 @@ double? parseJsonToDouble(String key, Map<String, dynamic>? json) {
     if (value is num) return value.toDouble();
     if (value is String) return double.tryParse(value);
   }
+  return null;
 }
 
 List<T> parseJsonToList<T>(

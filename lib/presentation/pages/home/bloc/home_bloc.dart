@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_boilerplate/data/models/task.dart';
 import 'package:flutter_boilerplate/domain/common/result.dart';
 import 'package:flutter_boilerplate/domain/use_cases/get_task.dart';
-import 'package:meta/meta.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -21,8 +20,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await getTask()
         .then((value) => emit(GetTasksSuccessState(value.data)))
         .catchError((error) {
-          debugPrint('$error');
-          emit(GetTasksFailedState(error));
-        });
+      debugPrint('$error');
+      emit(GetTasksFailedState(error));
+    });
   }
 }

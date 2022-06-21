@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boilerplate/presentation/di/locator.dart';
 import 'package:flutter_boilerplate/presentation/pages/home/bloc/home_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_boilerplate/generated/l10n.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
       create: (context) => locator<HomeBloc>()..add(GetTaskEvent()),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.helloWorld),
+          title: Text(S.current.helloWorld),
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {

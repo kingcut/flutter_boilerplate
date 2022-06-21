@@ -10,10 +10,18 @@ class RestClient {
 
   Uri _uri(String api, {Map<String, dynamic>? queryParameters}) {
     final config = locator<FlavorConfig>();
-    if(config.useHttps) {
-      return Uri.https(config.apiHost, '${config.apiPath}$api', queryParameters);
+    if (config.useHttps) {
+      return Uri.https(
+        config.apiHost,
+        '${config.apiPath}$api',
+        queryParameters,
+      );
     } else {
-      return Uri.http(config.apiHost, '${config.apiPath}$api', queryParameters);
+      return Uri.http(
+        config.apiHost,
+        '${config.apiPath}$api',
+        queryParameters,
+      );
     }
   }
 

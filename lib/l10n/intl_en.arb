@@ -1,0 +1,10 @@
+{
+  "helloWorld": "Chào",
+  "@helloWorld": {
+    "description": "Chào Nhá"
+  },
+  "welcome_title": "Hãy thay đổi cuộc sống của bạn! Ngay bây giờ!",
+  "welcome_description": "Chào mừng bạn đến với Life Plan, nơi mà bạn có thể lên kế hoạch cho hành trình phía trước.",
+  "start": "Bắt đầu",
+  "already_account": "Bạn đã có tài khoản?"
+}

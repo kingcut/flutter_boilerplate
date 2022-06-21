@@ -1,9 +1,10 @@
 class Assets {
   Assets._();
+  static const _assets = 'assets';
+  static const _images = 'images';
 
-  // splash screen assets
-  static const String appLogo = 'assets/icons/ic_appicon.png';
+  // static const String appLogo = '$_assets/$_icons/ic_app_icon.png';
 
   // login screen assets
-  static const String carBackground = 'assets/images/img_login.jpg';
+  static const String imageWelcome = '$_assets/$_images/image_welcome.png';
 }
